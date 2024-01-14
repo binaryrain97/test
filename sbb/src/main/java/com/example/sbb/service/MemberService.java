@@ -1,5 +1,6 @@
 package com.example.sbb.service;
 
+import com.example.sbb.dto.MemberDto;
 import com.example.sbb.entity.Member;
 import com.example.sbb.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,5 +24,15 @@ public class MemberService {
     }
     public Member getMember(String name) {
         return this.memberRepository.findByUsername(name).orElse(null);
+    }
+    public MemberDto findById(Long memberId) {
+        Member member = memberRepository.findById(memberId).orElse(null);
+        if(member == null) return null;
+        return MemberDto.toDto(member);
+    }
+    public MemberDto findByUsername(String name) {
+        Member member = memberRepository.findByUsername(name).orElse(null);
+        if(member == null) return null;
+        return MemberDto.toDto(member);
     }
 }

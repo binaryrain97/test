@@ -1,14 +1,15 @@
 <html layout:decorate="~{layout}">
 <div layout:fragment="content" class="container">
     <h5 class="my-3 border-bottom pb-2">질문등록</h5>
-    <form action="/article/create" method="post">
+    <form th:action="@{|/article/modify/${article.id}|}" method="post">
+        <input type="hidden" name="id" th:value="${article.id}">
         <div class="mb-3">
             <label for="title" class="form-label">제목</label>
-            <input type="text" name="title" id="title" class="form-control">
+            <input type="text" id="title" name="title" th:value="${article.title}" class="form-control">
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">내용</label>
-            <textarea name="content" id="content" class="form-control" rows="10"></textarea>
+            <textarea id="content" name="content" class="form-control" th:text="${article.content}" rows="10"></textarea>
         </div>
         <input type="submit" value="저장하기" class="btn btn-primary my-2">
     </form>

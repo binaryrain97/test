@@ -1,0 +1,22 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+    <h2 class="border-bottom py-2">회원 정보</h2>
+    <div class="card my-3">
+        <div class="card-body">
+            <h2>유저 닉네임</h2>
+            <div class="card-text" style="white-space: pre-line;" th:text="${member.username}"></div>
+        </div>
+        <div class="card-body">
+            <h2>유저 비밀번호</h2>
+            <div class="card-text" style="white-space: pre-line;" th:text="${member.password}"></div>
+        </div>
+        <div class="card-body">
+            <h2>유저 이메일</h2>
+            <div class="card-text" style="white-space: pre-line;" th:text="${member.email}"></div>
+        </div>
+        <div class="my-3">
+            <a th:href="@{|/member/modify/${member.id}|}" class="btn btn-sm btn-outline-secondary" th:text="수정"></a>
+        </div>
+    </div>
+</div>
+</html>

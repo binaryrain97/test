@@ -1,18 +1,12 @@
 package com.example.sbb.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Builder
 @Getter
 @Entity
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class Member {
@@ -23,4 +17,7 @@ public class Member {
     private String username;
     private String password;
     private String email;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+    private Record record;
 }

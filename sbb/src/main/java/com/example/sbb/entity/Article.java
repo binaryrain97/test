@@ -1,5 +1,6 @@
 package com.example.sbb.entity;
 
+import com.example.sbb.dto.ArticleDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,4 +34,24 @@ public class Article {
 
     @ManyToOne
     private Member author;
+
+    private LocalDateTime modifyDate;
+
+    public static Article toEntity(ArticleDto dto) {
+        return Article.builder()
+                .id(dto.getId())
+                .title(dto.getTitle())
+                .content(dto.getContent())
+                .createDate(dto.getCreateDate())
+                .commentList(dto.getCommentList())
+                .author(dto.getAuthor())
+                .build();
+    }
+    public void patch(Article entity) {
+        if(entity.getTitle() != null) this.title = entity.getTitle();
+        if(entity.getContent() != null) this.content = entity.getContent();
+        if(entity.getCreateDate() != null) this.createDate = entity.getCreateDate();
+        if(entity.getCommentList() != null) this.commentList = entity.getCommentList();
+        if(entity.getAuthor() != null) this.author = entity.getAuthor();
+    }
 }

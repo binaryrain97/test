@@ -1,5 +1,6 @@
 package com.example.sbb.controller;
 
+import com.example.sbb.dto.ArticleDto;
 import com.example.sbb.entity.Article;
 import com.example.sbb.entity.Member;
 import com.example.sbb.service.ArticleService;
@@ -30,9 +31,9 @@ public class CommentController {
                          @PathVariable Long articleId,
                          @RequestParam String content,
                          Principal principal) {
-        Article article = articleService.getArticle(articleId);
+        ArticleDto dto = articleService.getArticle(articleId);
         Member member = memberService.getMember(principal.getName());
-        this.commentService.create(article, content, member);
+        this.commentService.create(Article.toEntity(dto), content, member);
         return "redirect:/article/" + articleId;
     }
 }
