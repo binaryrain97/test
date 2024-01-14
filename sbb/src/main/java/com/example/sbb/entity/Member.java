@@ -3,6 +3,8 @@ package com.example.sbb.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Builder
 @Getter
 @Entity
@@ -19,5 +21,5 @@ public class Member {
     private String email;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
-    private Record record;
+    private List<Record> record;
 }

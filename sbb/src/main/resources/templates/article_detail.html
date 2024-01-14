@@ -34,14 +34,19 @@
                     <div th:text="${#temporals.format(comment.createDate, 'yyyy-MM-dd HH:mm')}"></div>
                 </div>
             </div>
+            <div class="my-3">
+                <a th:href="@{|/comment/modify/${article.id}/${comment.id}|}" class="btn btn-sm btn-outline-secondary" th:text="수정"></a>
+                <a th:href="@{|/comment/delete/${article.id}/${comment.id}|}" class="btn btn-sm btn-outline-secondary" th:text="삭제"></a>
+            </div>
         </div>
     </div>
     <!-- 답변 반복 끝  -->
     <!-- 답변 작성 -->
     <form th:action="@{|/comment/create/${article.id}|}" method="post" class="my-3">
         <textarea sec:authorize="isAnonymous()" disabled name="content" class="form-control" rows="5"></textarea>
-        <textarea sec:authorize="isAuthenticated()" name="content" class="form-control" rows="5"></textarea>
+        <textarea sec:authorize="isAuthenticated()" name="content" class="form-control" id="content" rows="5"></textarea>
         <input type="submit" value="답변등록" class="btn btn-primary my-2">
+<!--        <button type="button" class="btn btn-primary my-2" id="comment-create-btn">댓글 작성</button>-->
     </form>
 </div>
 </html>

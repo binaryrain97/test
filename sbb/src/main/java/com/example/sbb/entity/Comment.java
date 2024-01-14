@@ -1,5 +1,6 @@
 package com.example.sbb.entity;
 
+import com.example.sbb.dto.CommentDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,4 +31,15 @@ public class Comment {
     private Member author;
 
     private LocalDateTime modifyDate;
+
+    public static Comment toEntity(CommentDto dto) {
+        return Comment.builder()
+                .id(dto.getId())
+                .content(dto.getContent())
+                .createDate(dto.getCreateDate())
+                .article(dto.getArticle())
+                .author(dto.getAuthor())
+                .modifyDate(dto.getModifyDate())
+                .build();
+    }
 }
